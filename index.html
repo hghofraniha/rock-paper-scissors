@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Project: Rock Paper Scissors</title>
+  </head>
+  <body>
+    <script>
+      function computerPlay() {
+        const choice = ['rock', 'paper', 'scissors'];
+        const index = Math.floor(Math.random() * 3) + 0;
+        return choice[index];
+      }
+
+      function playRound(playerSelection, computerSelection) {
+        if (playerSelection === 'scissors') {
+          switch (computerSelection) {
+            case 'scissors':
+              return 'draw';
+              break;
+            case 'paper':
+              return 'humanWin';
+              break;
+            case 'rock':
+              return 'computerWin';
+              break;
+          }
+        }
+        if (playerSelection === 'rock') {
+          switch (computerSelection) {
+            case 'scissors':
+              return 'humanWin';
+              break;
+            case 'paper':
+              return 'computerWin';
+              break;
+            case 'rock':
+              return 'draw';
+              break;
+          }
+        }
+        if (playerSelection === 'paper') {
+          switch (computerSelection) {
+            case 'scissors':
+              return 'computerWin';
+              break;
+            case 'paper':
+              return 'draw';
+              break;
+            case 'rock':
+              return 'humanWin';
+              break;
+          }
+        }
+      }
+
+      function game() {
+        let humanWin = 0;
+        let computerWin = 0;
+        while (computerWin != 5 && humanWin != 5) {
+          let playerSelection = prompt('Choose one: rock, paper, scissors');
+          let computerSelection = computerPlay();
+          let result = playRound(playerSelection, computerSelection);
+          if (result === 'humanWin') {
+            humanWin += 1;
+            console.log('humanWin');
+            continue;
+          }
+          else if (result === 'computerWin') {
+            computerWin += 1;
+            console.log('computerWin');
+            continue;
+          }
+          else {
+            console.log('draw');
+          }
+        }
+      return (humanWin > computerWin) ? 'humanwin' : 'computerwin';
+      }
+
+      console.log(game());
+    </script>
+  </body>
+</html>
